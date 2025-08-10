@@ -4,11 +4,44 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./check.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JPI Component Splitter</title>
-    <!-- FOUC - "Flash of Unstyled Content" -->
-    
-    <script type="module" crossorigin src="./assets/index-C9B4RFWg.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B47mgVN7.css">
+    <title>JPI Splitter</title>
+    <!-- Mantine Color Scheme Detection (Prevents FOUC) -->
+    <script>
+      try {
+        const mantine = localStorage.getItem("mantine-color-scheme");
+        if (!mantine) {
+          const scheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+          document.documentElement.setAttribute(
+            "data-mantine-color-scheme",
+            scheme
+          );
+        } else {
+          document.documentElement.setAttribute(
+            "data-mantine-color-scheme",
+            JSON.parse(mantine)
+          );
+        }
+      } catch {}
+    </script>
+    <!-- Mantine default theme colors to prevent FOUC -->
+    <style>
+      /* Light mode (default) */
+      :root {
+        background-color: #fff;
+        color: #000;
+      }
+
+      /* Dark mode - Mantine default dark colors */
+      [data-mantine-color-scheme="dark"] {
+        background-color: #242424;
+        color: #c9c9c9;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-Ctd1MnEH.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DrK858-Q.css">
   </head>
   <body>
     <div id="root"></div>
